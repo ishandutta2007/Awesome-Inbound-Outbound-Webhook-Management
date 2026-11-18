@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" height="100%" style="background:#0b0f19; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070a13" />
+      <stop offset="50%" stop-color="#0d1527" />
+      <stop offset="100%" stop-color="#080c18" />
+    </linearGradient>
+
+    <!-- Glowing Accent Gradients -->
+    <linearGradient id="primary-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <linearGradient id="line-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.1" />
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0.1" />
+    </linearGradient>
+
+    <linearGradient id="line-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#818cf8" stop-opacity="0.1" />
+      <stop offset="50%" stop-color="#c084fc" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#f43f5e" stop-opacity="0.1" />
+    </linearGradient>
+
+    <!-- Grid Pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.7" stroke-opacity="0.6" />
+    </pattern>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="glow-orb" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="40" result="blur" />
+    </filter>
+  </defs>
+
+  <style>
+    /* CSS Keyframes for dynamic / animated background elements */
+    @keyframes pulseOrb {
+      0%, 100% { opacity: 0.25; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(1.15); }
+    }
+    @keyframes flowRight {
+      0% { stroke-dashoffset: 400; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes floatParticle {
+      0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+      50% { transform: translateY(-15px) scale(1.3); opacity: 0.8; }
+    }
+    @keyframes nodePulse {
+      0%, 100% { r: 4; fill-opacity: 0.6; }
+      50% { r: 6.5; fill-opacity: 1; }
+    }
+
+    .orb-left {
+      transform-origin: 200px 100px;
+      animation: pulseOrb 8s ease-in-out infinite alternate;
+    }
+    .orb-right {
+      transform-origin: 1000px 320px;
+      animation: pulseOrb 10s ease-in-out infinite alternate;
+    }
+    .data-flow-1 {
+      stroke-dasharray: 12 16;
+      animation: flowRight 12s linear infinite;
+    }
+    .data-flow-2 {
+      stroke-dasharray: 8 12;
+      animation: flowRight 9s linear infinite reverse;
+    }
+    .p1 { animation: floatParticle 5s ease-in-out infinite; }
+    .p2 { animation: floatParticle 7s ease-in-out infinite 1.5s; }
+    .p3 { animation: floatParticle 6s ease-in-out infinite 3s; }
+    .node-anim { animation: nodePulse 3s ease-in-out infinite; }
+  </style>
+
+  <!-- 1. Base Background -->
+  <rect width="100%" height="100%" fill="url(#bg-grad)" />
+
+  <!-- 2. Ambient Glowing Orbs (Dynamic depth) -->
+  <circle class="orb-left" cx="180" cy="90" r="140" fill="#38bdf8" filter="url(#glow-orb)" />
+  <circle class="orb-right" cx="1020" cy="330" r="160" fill="#a855f7" filter="url(#glow-orb)" />
+  <circle cx="600" cy="210" r="180" fill="#4338ca" opacity="0.15" filter="url(#glow-orb)" />
+
+  <!-- 3. Grid Pattern Overlay -->
+  <rect width="100%" height="100%" fill="url(#grid)" />
+
+  <!-- 4. Dynamic Animated Connection Lines (Representing Webhook Delivery Pipelines) -->
+  <g opacity="0.75">
+    <!-- Inbound Path -->
+    <path class="data-flow-1" d="M -50,110 C 250,50 350,180 600,120 C 850,60 950,160 1250,110" fill="none" stroke="url(#line-grad-1)" stroke-width="2.5" />
+    <!-- Outbound Path -->
+    <path class="data-flow-2" d="M -50,330 C 250,380 400,280 600,320 C 800,360 950,260 1250,310" fill="none" stroke="url(#line-grad-2)" stroke-width="2" />
+  </g>
+
+  <!-- Dynamic Network Nodes / Floating Packets -->
+  <g>
+    <circle class="node-anim" cx="280" cy="92" r="5" fill="#38bdf8" filter="url(#glow)" />
+    <circle class="node-anim" cx="500" cy="142" r="4" fill="#818cf8" filter="url(#glow)" style="animation-delay: 1s;" />
+    <circle class="node-anim" cx="720" cy="95" r="5" fill="#c084fc" filter="url(#glow)" style="animation-delay: 2s;" />
+    <circle class="node-anim" cx="930" cy="138" r="4" fill="#38bdf8" filter="url(#glow)" style="animation-delay: 1.5s;" />
+
+    <circle class="p1" cx="140" cy="260" r="3" fill="#38bdf8" />
+    <circle class="p2" cx="1060" cy="160" r="3.5" fill="#c084fc" />
+    <circle class="p3" cx="1120" cy="270" r="2.5" fill="#818cf8" />
+  </g>
+
+  <!-- Decorative Outer Frame -->
+  <rect x="20" y="20" width="1160" height="380" rx="20" fill="none" stroke="#334155" stroke-width="1.2" stroke-opacity="0.5" />
+
+  <!-- 5. Foreground Content Container (Guaranteed Clear Foreground) -->
+  <g transform="translate(600, 195)" text-anchor="middle">
+    <!-- Category Badge Pill -->
+    <g transform="translate(0, -95)">
+      <rect x="-165" y="-16" width="330" height="32" rx="16" fill="#1e293b" fill-opacity="0.85" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.6" filter="url(#glow)" />
+      <text y="5" fill="#38bdf8" font-size="12" font-weight="700" letter-spacing="2.2" text-anchor="middle">⚡ INBOUND &amp; OUTBOUND ECOSYSTEM</text>
+    </g>
+
+    <!-- Main Title -->
+    <text y="-25" fill="#ffffff" font-size="44" font-weight="800" letter-spacing="-0.5" filter="url(#glow)">
+      Awesome Webhook Management
+    </text>
+
+    <!-- Subtitle / Tagline -->
+    <text y="18" fill="#94a3b8" font-size="17" font-weight="400" letter-spacing="0.2">
+      Curated Suite of SaaS Platforms &amp; High-Throughput Open-Source Event Gateways
+    </text>
+
+    <!-- Feature Pills in Foreground -->
+    <g transform="translate(0, 68)">
+      <!-- Pill 1 -->
+      <g transform="translate(-320, 0)">
+        <rect x="-65" y="-14" width="130" height="28" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1" />
+        <text y="4" fill="#cbd5e1" font-size="11.5" font-weight="500">📥 Ingestion &amp; DLQ</text>
+      </g>
+      <!-- Pill 2 -->
+      <g transform="translate(-160, 0)">
+        <rect x="-65" y="-14" width="130" height="28" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1" />
+        <text y="4" fill="#cbd5e1" font-size="11.5" font-weight="500">🔁 Retries &amp; Backoff</text>
+      </g>
+      <!-- Pill 3 -->
+      <g transform="translate(0, 0)">
+        <rect x="-65" y="-14" width="130" height="28" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1" />
+        <text y="4" fill="#cbd5e1" font-size="11.5" font-weight="500">🔐 HMAC Signing</text>
+      </g>
+      <!-- Pill 4 -->
+      <g transform="translate(160, 0)">
+        <rect x="-65" y="-14" width="130" height="28" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1" />
+        <text y="4" fill="#cbd5e1" font-size="11.5" font-weight="500">⏱️ Rate Limiting</text>
+      </g>
+      <!-- Pill 5 -->
+      <g transform="translate(320, 0)">
+        <rect x="-65" y="-14" width="130" height="28" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1" />
+        <text y="4" fill="#cbd5e1" font-size="11.5" font-weight="500">🔍 Realtime Inspect</text>
+      </g>
+    </g>
+  </g>
+</svg>
